@@ -1,0 +1,67 @@
+{% extends 'components/base.html' %}
+{% load static %}
+{% block extra %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+{% endblock %}
+
+{% block profile %}
+  {% if user.is_authenticated %}
+    {% if user.Role == 'Student' %}
+        <a href="{% url 'studentdashboard' %}" style="margin-bottom: 15px;"><i class='bx bx-user'></i> Profile</a>
+    {% elif user.Role == 'Faculty' %}
+      <a href="{% url 'faculty_dashboard' %}" style="margin-bottom: 15px;"><i class='bx bx-user'></i> Profile</a>
+      
+    {% elif user.Role == 'TransportMem' %}
+      <a href="{% url 'transportdashboard' %}"style="margin-bottom: 15px;"><i class='bx bx-user'></i> Profile</a>
+    {% endif %}
+  {% else %}
+   
+    <a href="{% url 'loginpage' %}" style="margin-bottom: 15px;"><i class='bx bx-user'></i> Login</a>
+  {% endif %}
+{% endblock %}
+
+
+{% block dashboard %}
+  {% if user.is_authenticated %}
+    {% if user.Role == 'Student' %}
+      <a href="{% url 'studentdashboard' %}">
+        <div class="menu-icons">
+          <i class="bx bx-book-reader"></i>
+          <span>Dashboard</span>
+        </div>
+      </a>
+    {% elif user.Role == 'Faculty' %}
+      <a href="{% url 'faculty_dashboard' %}">
+        <div class="menu-icons">
+          <i class="bx bx-chalkboard"></i>
+          <span>Dashboard</span>
+        </div>
+      </a>
+    {% elif user.Role == 'TransportMem' %}
+      <a href="{% url 'transportdashboard' %}">
+        <div class="menu-icons">
+          <i class="bx bx-bus"></i>
+          <span>Dashboard</span>
+        </div>
+      </a>
+    {% endif %}
+  {% else %}
+   
+    <a href="{% url 'loginpage' %}"  onclick="setTimeout(()=>{location.reload();}, 500);">
+      <div class="menu-icons-log-out">
+        <i class="bx bx-log-in"></i>
+        <span>Login</span>
+      </div>
+    </a>
+  {% endif %}
+{% endblock %}
+
+{% block content%}
+
+<div id="hero-container" class="">
+  
+</div>
+{% endblock %}

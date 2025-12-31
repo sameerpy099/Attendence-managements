@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
+  <title>{% block tittle%}Managementsystem{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  {% block extra%}{% endblock %}
+</head>
+<body>
+  <!-- navabr start -->
+
+  <div class="navabr">
+ <nav>
+  <div class="logo" style="font-size: 20px;"><span>ManageRecords</span></div>
+  <div class="links">
+    <!-- Profile -->
+    <div class="profile-wraper" id="profileWrapper">
+      <div class="img">
+        {% block data %}
+      
+        <img src="{% static 'images/profile.jpeg' %}" alt="profile image">
+
+
+        {% endblock %}
+      </div>
+      <i class='bx bx-chevron-down' style="font-size:16px; margin-left:5px;"></i>
+
+      <div class="pop-pup-profile" id="profilePopup">
+        <h4>{% block introprofile%}{% endblock %}</h4>
+        <p>Student</p>
+        <div class="poppup-actions">
+          {% block profile %}{% endblock %}
+          <!-- <a href="{% url 'loginpage' %}" style="margin-bottom: 15px;"><i class='bx bx-user'></i> Profile</a> -->
+          <a href="{% url 'logoutpage' %}"><i class='bx bx-log-out'></i>Logout</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="setting">
+      <i class="bx bx-bell"></i>
+    </div>
+  </div>
+</nav>
+
+
+
+  </div>
+
+  <!-- slider menu start  -->
+
+  <div class="slider slider-closed">
+  <div class="toggle">
+    <i class="bx bx-chevron-right bx-chevron-left"></i>
+  </div>
+
+      <div class="info">
+        <div class="logo"><span>ManageRecords</span></div>
+        <div class="title">Welcome Back ! {% block sliderintro %}{% endblock %}</div>
+    </div>
+    <hr>
+    <div class="menu">
+
+      <a href="">
+        <div class="menu-icons">
+          <i class="bx bx-home"></i>
+          <span>Home</span>
+        </div>
+      </a>
+      
+      {% block dashboard %}
+      
+      {% endblock dashboard %}
+
+
+      <a href="">
+        <div class="menu-icons">
+          <i class="bx bx-file"></i>
+          <span>Questionpaper</span>
+        </div>
+      </a>
+      <a href="{% url 'studentprofile' %}">
+        <div class="menu-icons">
+          <i class="bx bx-file"></i>
+          <span>Result</span>
+        </div>
+      </a>
+
+      <a href="{% url 'update' %}">
+        <div class="menu-icons">
+          <i class="bx bx-sync"></i>
+          <span>Updates</span>
+        </div>
+      </a>
+
+      {% block login%}{% endblock %}
+      <a href="{% url 'logoutpage' %}"  onclick="setTimeout(()=>{location.reload();}, 500);">
+        <div class="menu-icons-log-out">
+          <i class="bx bx-log-out"></i>
+          <span>Logout</span>
+        </div>
+      </a>
+
+
+
+    </div>
+  </div>
+
+ <div class="content {% block class %}{% endblock %}">
+  {% block content %}{% endblock %}
+ </div>
+
+</body>
+<script src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'js/slide.js' %}"></script>
+</html>

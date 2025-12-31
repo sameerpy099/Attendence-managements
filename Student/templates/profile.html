@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ student.first_name }}'s Profile | Tulas University</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f7f9fb;
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    header .logo {
+      height: 55px;
+      margin-right: 15px;
+    }
+
+    header .header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #222;
+      margin: 0;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Profile Container */
+    .profile-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 30px 40px;
+    }
+
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+      gap: 20px;
+    }
+
+    .profile-info h2 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .profile-info p {
+      margin: 2px 0;
+      color: #555;
+      font-size: 15px;
+    }
+
+    .profile-image img {
+      width: 140px;
+      height: 140px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+
+    /* Table Styling */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #e5e5e5;
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: #f2f4f7;
+      font-weight: 600;
+      color: #333;
+      width: 25%;
+    }
+
+    td {
+      background-color: #fff;
+      color: #444;
+    }
+
+    td a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+      }
+
+      .profile-container {
+        padding: 20px;
+        margin: 20px;
+      }
+
+      .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile-image {
+        margin-top: 10px;
+      }
+
+      .profile-image img {
+        width: 120px;
+        height: 120px;
+      }
+
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-title">
+      <img src="{% static 'images/tulas_logo.png' %}" alt="Tulas Logo" class="logo">
+      <div>
+        <h1>Tulas Management University</h1>
+        <p>Student Profile</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Profile Section -->
+  <div class="profile-container">
+    <div class="profile-header">
+      <div class="profile-info">
+        <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+        <p><strong>Student ID:</strong> {{ student.student_id }}</p>
+        <p><strong>Course:</strong> {{ student.Course }}</p>
+        <p><strong>Branch:</strong> {{ student.Branch }}</p>
+      </div>
+
+      <div class="profile-image">
+        {% if student.profile_image %}
+          <img src="{{ student.profile_image.url }}" alt="Profile Image">
+        {% else %}
+          <img src="{% static 'images/default_profile.png' %}" alt="Profile Image">
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Info Table -->
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Father's Name</th>
+          <td>{{ student.father_name }}</td>
+          <th>Mother's Name</th>
+          <td>{{ student.mother_name }}</td>
+        </tr>
+        <tr>
+          <th>Date of Birth</th>
+          <td>{{ student.Dob }}</td>
+          <th>Blood Group</th>
+          <td>{{ student.blood_group }}</td>
+        </tr>
+        <tr>
+          <th>Email</th>
+          <td>{{ student.email }}</td>
+          <th>Mobile Number</th>
+          <td>{{ student.mobile_number }}</td>
+        </tr>
+        <tr>
+          <th>Permanent Address</th>
+          <td>{{ student.Permanent_address }}</td>
+          <th>Local Address</th>
+          <td>{{ student.local_address }}</td>
+        </tr>
+        <tr>
+          <th>State</th>
+          <td>{{ student.state }}</td>
+          <th>PIN Code</th>
+          <td>{{ student.pin_code }}</td>
+        </tr>
+        <tr>
+          <th>PAN Card Number</th>
+          <td>{{ student.pancard_number }}</td>
+          <th>Aadhar</th>
+          <td><a href="{{ student.Aadhar.url }}" target="_blank">View Document</a></td>
+        </tr>
+        <tr>
+          <th>High School %</th>
+          <td>{{ student.high_percentage }}%</td>
+          <th>Intermediate %</th>
+          <td>{{ student.inter_percentage }}%</td>
+        </tr>
+        <tr>
+          <th>High School Year</th>
+          <td>{{ student.high_passout }}</td>
+          <th>Intermediate Year</th>
+          <td>{{ student.inter_passout }}</td>
+        </tr>
+        <tr>
+          <th>High School Marksheet</th>
+          <td><a href="{{ student.High_marksheet.url }}" target="_blank">View</a></td>
+          <th>Intermediate Marksheet</th>
+          <td><a href="{{ student.Inter_marksheet.url }}" target="_blank">View</a></td>
+        </tr>
+        <tr>
+          <th>Migration Certificate</th>
+          <td><a href="{{ student.Migrations.url }}" target="_blank">View</a></td>
+          <th>Character Certificate</th>
+          <td><a href="{{ student.Character_cirtificate.url }}" target="_blank">View</a></td>
+        </tr>
+        <tr>
+          <th>Transfer Certificate (TC)</th>
+          <td><a href="{{ student.TC.url }}" target="_blank">View</a></td>
+          <th></th>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% extends 'components/navbar.html'%}
+{% load static %}
+{% block extracss %}
+<link rel="stylesheet" href="{%static 'das.css' %}">
+{% endblock extracss %}
+
+{% block bx %}bx bx-heart{% endblock %}{% block firstlink %}Dashboard{% endblock %}
+{% block 2bx %}bx bx-check-circle{% endblock %}{% block secondlink %}Today Report{% endblock %}
+{% block 3bx %}bx bx-bus{% endblock %}{% block thirdlink %}Passenger{% endblock %}
+{% block 4bx %}bx bx-file{% endblock %}{% block fourthlink %}Notice{% endblock %}
+
+<!-- links url  -->
+
+{% block link1 %}{% url 'Passengerreport' %}{% endblock %}
+{% block link2 %}{% url 'history' %}{% endblock %}
+{% block link3 %}{% url 'Passengerdetail' %}{% endblock %}
+{% block link4 %}{% url 'Record_attendance' %}{% endblock %}
+
+   {% block profileimage %}
+        <img src="{{form.profile.url}}"
+         class="w-full h-full object-cover">
+{% endblock %}
+
+
+  {% block main %}
+  <div id="main" class="w-full py-10 flex flex-col h-full">
+
+    <div id="info-driver" class=" w-full p-5 flex flex-col ">
+      {% if form %}
+     <div class="flex gap-3 mb-4">
+      <h1 class="text-sm md:text-lg">Driver Name: </h1>
+      <span class="text-sm md:text-lg font-medium">{{form.name}}</span>
+    </div>
+     <div class="flex gap-3 mb-4">
+      <h1 class="text-sm md:text-lg">User Id: </h1>
+      <span class="text-sm md:text-lg ">{{form.Driver_id}}</span>
+    </div>
+     <div class="flex gap-3 mb-4">
+      <h1 class="text-sm md:text-lg">User Name: </h1>
+      <span class="text-sm md:text-lg ">{{form.name}}</span>
+    </div>
+     <div class="flex gap-3 mb-4">
+      <h1 class="text-sm md:text-lg">Email Address: </h1>
+      <span class="text-sm md:text-lg">{{form.email}}</span>
+    </div>
+     <div class="flex gap-1 md:gap-3 mb-4">
+      <h1 class="text-[12px] md:text-lg">Permanent Address: </h1>
+      <span class="text-[12px] md:text-lg">{{form.Address}}</span>
+    </div>
+      {% endif %}
+    </div>
+
+
+
+  </div>
+{% endblock %}

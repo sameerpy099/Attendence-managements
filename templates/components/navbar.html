@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  {% block extracss %}{% endblock extracss %}
+</head>
+
+<body class="overflow-hidden">
+  <div class="overflow-x-hidden">  <nav class="flex items-center p-2 shadow-sm justify-between">
+    <span class="text-lg md:text-2xl ml-5 font-medium" id="logo">University Management</span>
+
+    <button id="profile-menu">
+      <div id="profile" class="w-[45px] h-[45px] overflow-hidden rounded-full mr-5 cursor-pointer">
+        {% block profileimage %}{% endblock %}
+        <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1wz0j6iNcsEAAUlxR1zS7jElJ8RnGj-74_w&s"
+         class="w-full h-full object-cover"> -->
+      </div>
+    </button>
+  </nav>
+
+  
+  <!-- SLIDE POP-UP MENU -->
+  <div id="pop-pup" class="w-[250px] h-full bg-gray-100 fixed top-13 right-[-250px] rounded-lg shadow-lg">
+
+    <div id="logo-menu" class="p-3 flex items-center justify-between">
+      <h1 class="text-lg font-medium">Welcome Name</h1>
+      <button class="text-3xl" id="toggle"><i class="bx bx-x"></i></button>
+    </div>
+
+    <div id="menu-links-slider">
+      <a href="{% block link1 %}{% endblock %}"><div class="p-3 flex gap-5 items-center cursor-pointer border rounded-lg hover:bg-gray-700 hover:text-white mb-5">
+        <button class="text-xl"><i class="{% block bx %}{% endblock %}"></i></button>
+        <span class="text-lg">{% block firstlink %}{% endblock %}</span>
+      </div></a>
+
+     <a href="{% block link2 %}{% endblock %}"> <div class="p-3 flex gap-5 items-center cursor-pointer border rounded-lg hover:bg-gray-700 hover:text-white mb-5">
+        <button class="text-xl"><i class="{% block 2bx %}{% endblock %}"></i></button>
+        <span class="text-lg">{% block secondlink %}{% endblock %}</span>
+      </div></a>
+
+     <a href="{% block link3 %}{% endblock %}"> <div class="p-3 flex gap-5 items-center cursor-pointer border rounded-lg hover:bg-gray-700 hover:text-white mb-5">
+        <button class="text-xl"><i class="{% block 3bx %}{% endblock %}"></i></button>
+        <span class="text-lg">{% block thirdlink %}{% endblock %}</span>
+      </div>
+</a>
+      <a href="{% block link4 %}{% endblock %}"><div class="p-3 flex gap-5 items-center cursor-pointer border rounded-lg hover:bg-gray-700 hover:text-white mb-5">
+        <button class="text-xl"><i class="{% block 4bx %}{% endblock %}"></i></button>
+        <span class="text-lg">{% block fourthlink %}{% endblock %}</span>
+      </div></a>
+    </div>
+  </div>
+
+
+  <main>
+    {% block main %}{% endblock %}
+  </main>
+</div>
+
+  <!-- NAVBAR -->
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+
+<script>
+/* LOGO ANIMATION */
+gsap.from("#logo", {
+  y: -45,
+  duration: 0.7,
+  delay: 0.3,
+  opacity: 0,
+});
+
+/* POPUP SLIDE ANIMATION */
+var tl = gsap.timeline({ paused: true });
+
+tl.to("#pop-pup", {
+  right:0,
+  opacity: 1,
+  duration: 0.5,
+  ease: "power3.out"
+})
+.from("#toggle", {
+  x: 50,
+  rotate: 360,
+  duration: 0.4,
+  opacity: 0
+});
+
+/* BUTTON EVENTS */
+document.querySelector("#profile-menu").addEventListener("click", () => tl.play());
+document.querySelector("#toggle").addEventListener("click", () => tl.reverse());
+</script>
+
+</body>
+</html>

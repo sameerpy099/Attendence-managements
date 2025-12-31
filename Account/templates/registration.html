@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tulas Management University | Student Registration</title>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #eef3f8;">
+
+  <!-- Header -->
+  <header style="background-color: #002147; color: white; text-align: center; padding: 25px 0; box-shadow: 0 3px 10px rgba(0,0,0,0.2);">
+    <h1 style="margin: 0; font-size: 30px;">Tulas Management University</h1>
+    <p style="margin: 5px 0 0; font-size: 18px;">Student Registration Form</p>
+  </header>
+
+  <!-- Main Content -->
+  <main style="display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; min-height: 100vh;">
+    <div style="width: 100%; max-width: 1400px; background-color: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 50px;">
+
+      <form action="" method="post" enctype="multipart/form-data" novalidate 
+        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+        <div style="display: flex; flex-direction: column;">
+          <label for="{{ field.id_for_label }}" 
+            style="font-weight: 600; color: #333; margin-bottom: 8px; font-size: 15px;">
+            {{ field.label }}
+          </label>
+          {{ field }}
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <span style="color: red; font-size: 13px;">{{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        {% endfor %}
+
+        <!-- Submit Button -->
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 30px;">
+          <button type="submit" 
+            style="background-color: #002147; color: white; padding: 14px 60px; border: none; border-radius: 6px; 
+                   font-size: 18px; cursor: pointer; transition: background 0.3s;">
+            Submit Form
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background-color: #002147; color: white; text-align: center; padding: 12px 0; font-size: 14px; margin-top: 40px;">
+    © 2025 Tulas Management University | All Rights Reserved
+  </footer>
+
+  <!-- Inline Field Styling -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const fields = document.querySelectorAll("input, select, textarea");
+      fields.forEach(f => {
+        f.style.padding = "12px";
+        f.style.border = "1px solid #ccc";
+        f.style.borderRadius = "6px";
+        f.style.fontSize = "15px";
+        f.style.width = "100%";
+        f.style.boxSizing = "border-box";
+        f.style.transition = "0.2s";
+        f.addEventListener("focus", () => {
+          f.style.borderColor = "#002147";
+          f.style.boxShadow = "0 0 6px rgba(0,33,71,0.3)";
+        });
+        f.addEventListener("blur", () => {
+          f.style.borderColor = "#ccc";
+          f.style.boxShadow = "none";
+        });
+      });
+    });
+  </script>
+
+  <!-- Responsive Design -->
+  <style>
+    @media screen and (max-width: 1000px) {
+      form {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media screen and (max-width: 700px) {
+      form {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+
+</body>
+</html>

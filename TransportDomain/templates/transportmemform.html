@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tulas Management University | Application Form</title>
+</head>
+<body style="margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #eef3f8;">
+
+  <!-- HEADER -->
+  <header style="background-color: #002147; color: white; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; box-shadow: 0 3px 10px rgba(0,0,0,0.2);">
+    <div style="display: flex; align-items: center;">
+      <img src="{}" alt="Tulas Logo" style="height: 60px; margin-right: 20px;">
+      <div>
+        <h1 style="margin: 0; font-size: 28px;">Tulas Management University</h1>
+        <p style="margin: 4px 0 0; font-size: 16px;">Professional Registration Form</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main style="display: flex; justify-content: center; align-items: flex-start; padding: 50px 20px; min-height: 100vh;">
+    <div style="width: 100%; max-width: 1300px; background-color: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 50px;">
+
+      <h2 style="text-align: center; color: #002147; font-size: 26px; margin-bottom: 30px;">Transport Registration</h2>
+
+      <form action="" method="post" enctype="multipart/form-data" novalidate 
+        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+        <div style="display: flex; flex-direction: column;">
+          <label for="{{ field.id_for_label }}" 
+                 style="font-weight: 600; color: #333; margin-bottom: 8px; font-size: 15px;">
+            {{ field.label }}
+          </label>
+          {{ field }}
+          {% if field.errors %}
+            {% for error in field.errors %}
+              <span style="color: red; font-size: 13px;">{{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+        {% endfor %}
+
+        <!-- SUBMIT BUTTON -->
+        <div style="grid-column: 1 / -1; text-align: center; margin-top: 20px;">
+          <button type="submit" 
+                  style="background-color: #002147; color: white; padding: 14px 60px; border: none; border-radius: 6px; font-size: 17px; cursor: pointer; transition: 0.3s;">
+            Submit Form
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background-color: #002147; color: white; text-align: center; padding: 15px 0; font-size: 14px;">
+    © 2025 Tulas Management University | All Rights Reserved
+  </footer>
+
+  <!-- INPUT STYLE SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const fields = document.querySelectorAll("input, select, textarea");
+      fields.forEach(f => {
+        f.style.padding = "12px";
+        f.style.border = "1px solid #ccc";
+        f.style.borderRadius = "6px";
+        f.style.fontSize = "15px";
+        f.style.width = "100%";
+        f.style.boxSizing = "border-box";
+        f.style.transition = "0.2s";
+        f.addEventListener("focus", () => {
+          f.style.borderColor = "#002147";
+          f.style.boxShadow = "0 0 6px rgba(0,33,71,0.3)";
+        });
+        f.addEventListener("blur", () => {
+          f.style.borderColor = "#ccc";
+          f.style.boxShadow = "none";
+        });
+      });
+    });
+  </script>
+
+  <!-- RESPONSIVE DESIGN -->
+  <style>
+    @media screen and (max-width: 1000px) {
+      form { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+    @media screen and (max-width: 700px) {
+      form { grid-template-columns: 1fr !important; }
+    }
+  </style>
+
+</body>
+</html>

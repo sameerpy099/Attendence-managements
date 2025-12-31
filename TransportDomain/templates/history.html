@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transport Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #eef3f8;
+    }
+    .header {
+      background-color: #002147;
+      color: white;
+      padding: 15px 30px;
+    }
+    .header img {
+      height: 60px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+    .header p {
+      margin: 4px 0 0;
+      font-size: 16px;
+    }
+    @media (max-width: 576px) {
+      .header h1 {
+        font-size: 22px;
+      }
+      .header p {
+        font-size: 14px;
+      }
+      .header img {
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- RESPONSIVE NAV/HEADER -->
+  <header class="header d-flex flex-column flex-sm-row align-items-center justify-content-between shadow-sm">
+    <div class="d-flex align-items-center mb-2 mb-sm-0">
+      <img src="{}" alt="Tulas Logo" class="me-3">
+      <div>
+        <h1>Tulas Management University</h1>
+        <p>Transport Corner</p>
+        <p>Driver Id: {{user.name}}</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABLE -->
+    {% if Alldetail %}
+  <div class="container mt-4">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Total Passenger</th>
+            <th scope="col">Total Student</th>
+            <th scope="col">Total Faculty</th>
+            <th scope="col">Day</th>
+            <th scope="col">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+           {% for detal in Alldetail %}
+          <tr>
+            <th scope="row">{{detal.id}}</th>
+            <td>{{detal.Total_passenger}}</td>
+            <td>{{detal.Total_student}}</td>
+            <td>{{detal.Total_faculty}}</td>
+            <td>{{detal.Day}}</td>
+            <td>{{detal.date}}</td>
+          </tr>
+
+          {% endfor %}
+          {% else %}
+          <strong><p>No Record Found</p></strong>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

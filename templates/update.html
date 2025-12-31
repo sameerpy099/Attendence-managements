@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | Tulas Management University</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+    }
+    header {
+      background-color: #002147;
+      color: white;
+      text-align: center;
+      padding: 25px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 18px;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .card {
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Tulas Management University</h1>
+    <p>Student Dashboard</p>
+  </header>
+
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Student Registration -->
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Student Registration</h5>
+            <p class="card-text">Register yourself for the current semester.</p>
+            <a href="{% url 'registrationpage' %}" class="btn btn-primary">Register Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam Schedule -->
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Faculty reg Schedule</h5>
+            <p class="card-text">Check the upcoming exam dates and schedule.</p>
+            <a href="{% url 'facultyreg' %}" class="btn btn-primary">View Schedule</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam Form -->
+ 
+      <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Exam Form</h5>
+            <p class="card-text">Fill your exam form online before the deadline.</p>
+            <a href="{% url 'transportpage' %}" class="btn btn-warning">Transport mem</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
