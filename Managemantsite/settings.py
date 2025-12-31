@@ -8,8 +8,7 @@ ssl._create_default_https_context = ssl.create_default_context(
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
-ALLOWED_HOSTS = ["*"]
+
 # SECURITY
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dummy-secret-for-dev")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
